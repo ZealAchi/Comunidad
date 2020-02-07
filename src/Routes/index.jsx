@@ -1,4 +1,10 @@
 import React, { memo, useEffect, useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import Layout from "./../Layout";
 import NoAuth from "./../Pages/NoAuth";
@@ -15,22 +21,27 @@ export default function() {
     toast(<Msg data={Notification} />);
   }, [Notification]);
 
-
-  if (!Load.loading) {
-    return <>Loading...</>;
-  }
   return (
-    <>
-      <div style={{ background: "red", display: "flex", flex: 1 }}>
-        <Layout>
-          <NoAuth />
-        </Layout>
+      <div>
+        <Router>
+          <Layout>
+          {Load.loading?<>Loading...</>:
+            <Switch>
+              <Route
+                path="/"
+                render={() => {
+                  return <NoAuth />;
+                }}
+              />
+            </Switch>
+            }
+          </Layout>
+        </Router>
       </div>
-    </>
   );
 }
 
-const Msg = ({  data }) => {
+const Msg = ({ data }) => {
   return (
     <div style={{ display: "flex" }}>
       <div style={{ flex: 1 }}>

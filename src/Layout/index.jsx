@@ -4,6 +4,6 @@ import Header from './Header'
 import Footer from './Footer'
 
 export default memo(function Layout({ children }) {
-  return( <><Header/><Body>{children}</Body>
-  <Footer/></>);
+  return( <div style={{flexDirection:'column'}}><Header/><Body>{children}</Body>
+  <Footer/></div>);
 });
