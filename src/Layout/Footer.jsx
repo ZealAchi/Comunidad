@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function ({children}){
+export default function (){
   return(
     <>
-    {children}
+    Footer
     </>
   )
 }
