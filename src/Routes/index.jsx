@@ -12,32 +12,66 @@ import { AuthContext } from "./../Context/Auth.Context";
 import { LoadContext } from "./../Context/Load.Context";
 import { NotificationContext } from "./../Context/Notification.Context";
 
+const AuthValue = [];
+
 export default function() {
   const { data: AuthInfo } = useContext(AuthContext);
-  const { data: Load } = useContext(LoadContext);
+  const { loading, changeState: changeLoad } = useContext(LoadContext);
   const { data: Notification = [] } = useContext(NotificationContext);
 
   useEffect(() => {
     toast(<Msg data={Notification} />);
   }, [Notification]);
 
+  const render = ruta => {
+    console.log(AuthInfo)
+    if (AuthInfo.token !== undefined) {
+      return ruta;
+    }
+    return <>NO as iniciado sesion</>;
+  };
+  const Rutas = [{ path: "/", render: render(<NoAuth />) }];
   return (
-      <div>
-        <Router>
-          <Layout>
-          {Load.loading?<>Loading...</>:
+    <div>
+      <Router>
+        <Layout>
+          <button
+            className="btn btn-primary form"
+            onClick={() => {
+              changeLoad(!loading);
+            }}
+          >
+            ChangeStatusLoad
+          </button>
+          {!loading ? (
+            <>Loading...</>
+          ) : (
             <Switch>
-              <Route
-                path="/"
-                render={() => {
-                  return <NoAuth />;
-                }}
-              />
+              {Rutas.map((item, i) => {
+                console.log(item);
+                return (
+                  <div key={i}>
+                    <Route
+                      path={item.path}
+                      render={() => {
+                        const { children } = item.render.props;
+                        if (children !== undefined) {
+                          return children;
+                        } else {
+                          if (item.render.type()) {
+                            return item.render.type();
+                          }
+                        }
+                      }}
+                    />
+                  </div>
+                );
+              })}
             </Switch>
-            }
-          </Layout>
-        </Router>
-      </div>
+          )}
+        </Layout>
+      </Router>
+    </div>
   );
 }
 
