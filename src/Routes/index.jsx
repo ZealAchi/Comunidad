@@ -7,11 +7,11 @@ import {
 } from "react-router-dom";
 import { toast } from "react-toastify";
 import Layout from "./../Layout";
-import NoAuth from "./../Pages/NoAuth";
+
 import { AuthContext } from "./../Context/Auth.Context";
 import { LoadContext } from "./../Context/Load.Context";
 import { NotificationContext } from "./../Context/Notification.Context";
-
+import {Rutas} from './DataRoute'
 const AuthValue = [];
 
 export default function() {
@@ -38,7 +38,7 @@ export default function() {
             <>Loading...</>
           ) : (
             <Switch>
-              {Ruteo.map((item, i) => {
+              {Rutas.map((item, i) => {
                 
                 return <RenderComponent key={i} AuthInfo={AuthInfo} component={item.component}/>;
               })}
@@ -49,13 +49,7 @@ export default function() {
     </div>
   );
 }
-const Ruteo = [
-  {
-    exact: false,
-    path: "/",
-    component: <NoAuth />
-  }
-];
+
 const RenderComponent = props => {
   const { AuthInfo, component } = props;
   if (AuthInfo.token !== undefined) {
