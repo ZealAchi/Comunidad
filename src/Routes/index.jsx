@@ -40,7 +40,7 @@ export default function() {
             <Switch>
               {Ruteo.map((item, i) => {
                 
-                return <RenderComponent AuthInfo={AuthInfo} component={item.component}/>;
+                return <RenderComponent key={i} AuthInfo={AuthInfo} component={item.component}/>;
               })}
             </Switch>
           )}
