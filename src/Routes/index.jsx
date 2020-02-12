@@ -22,15 +22,6 @@ export default function() {
   useEffect(() => {
     toast(<Msg data={Notification} />);
   }, [Notification]);
-
-  const render = ruta => {
-    console.log(AuthInfo)
-    if (AuthInfo.token !== undefined) {
-      return ruta;
-    }
-    return <>NO as iniciado sesion</>;
-  };
-  const Rutas = [{ path: "/", render: render(<NoAuth />) }];
   return (
     <div>
       <Router>
@@ -47,25 +38,9 @@ export default function() {
             <>Loading...</>
           ) : (
             <Switch>
-              {Rutas.map((item, i) => {
-                console.log(item);
-                return (
-                  <div key={i}>
-                    <Route
-                      path={item.path}
-                      render={() => {
-                        const { children } = item.render.props;
-                        if (children !== undefined) {
-                          return children;
-                        } else {
-                          if (item.render.type()) {
-                            return item.render.type();
-                          }
-                        }
-                      }}
-                    />
-                  </div>
-                );
+              {Ruteo.map((item, i) => {
+                
+                return <RenderComponent AuthInfo={AuthInfo} component={item.component}/>;
               })}
             </Switch>
           )}
@@ -74,6 +49,20 @@ export default function() {
     </div>
   );
 }
+const Ruteo = [
+  {
+    exact: false,
+    path: "/",
+    component: <NoAuth />
+  }
+];
+const RenderComponent = props => {
+  const { AuthInfo, component } = props;
+  if (AuthInfo.token !== undefined) {
+    return component
+  }
+  return <>NO as iniciado sesion</>;
+};
 
 const Msg = ({ data }) => {
   return (
