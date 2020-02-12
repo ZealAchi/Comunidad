@@ -19,9 +19,7 @@ export default function() {
   const { loading, changeState: changeLoad } = useContext(LoadContext);
   const { data: Notification = [] } = useContext(NotificationContext);
 
-  useEffect(() => {
-    toast(<Msg data={Notification} />);
-  }, [Notification]);
+  
   return (
     <div>
       <Router>
@@ -33,6 +31,14 @@ export default function() {
             }}
           >
             ChangeStatusLoad
+          </button>
+          <button
+            className="btn btn-primary form"
+            onClick={() => {
+              toast(<Msg data={Notification} />)
+            }}
+          >
+            Enviar Notificacion por default
           </button>
           {!loading ? (
             <>Loading...</>
