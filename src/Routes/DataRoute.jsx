@@ -7,3 +7,11 @@ export const Rutas = [
     component: <NoAuth />
   }
 ];
+
+export const RenderComponent = props => {
+  const { AuthInfo, component } = props;
+  if (AuthInfo.token !== undefined) {
+    return component
+  }
+  return <>NO as iniciado sesion</>;
+};

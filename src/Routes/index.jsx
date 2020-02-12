@@ -11,7 +11,7 @@ import Layout from "./../Layout";
 import { AuthContext } from "./../Context/Auth.Context";
 import { LoadContext } from "./../Context/Load.Context";
 import { NotificationContext } from "./../Context/Notification.Context";
-import {Rutas} from './DataRoute'
+import { Rutas, RenderComponent } from "./DataRoute";
 const AuthValue = [];
 
 export default function() {
@@ -19,7 +19,6 @@ export default function() {
   const { loading, changeState: changeLoad } = useContext(LoadContext);
   const { data: Notification = [] } = useContext(NotificationContext);
 
-  
   return (
     <div>
       <Router>
@@ -35,7 +34,7 @@ export default function() {
           <button
             className="btn btn-primary form"
             onClick={() => {
-              toast(<Msg data={Notification} />)
+              toast(<Msg data={Notification} />);
             }}
           >
             Enviar Notificacion por default
@@ -45,8 +44,13 @@ export default function() {
           ) : (
             <Switch>
               {Rutas.map((item, i) => {
-                
-                return <RenderComponent key={i} AuthInfo={AuthInfo} component={item.component}/>;
+                return (
+                  <RenderComponent
+                    key={i}
+                    AuthInfo={AuthInfo}
+                    component={item.component}
+                  />
+                );
               })}
             </Switch>
           )}
@@ -55,14 +59,6 @@ export default function() {
     </div>
   );
 }
-
-const RenderComponent = props => {
-  const { AuthInfo, component } = props;
-  if (AuthInfo.token !== undefined) {
-    return component
-  }
-  return <>NO as iniciado sesion</>;
-};
 
 const Msg = ({ data }) => {
   return (
