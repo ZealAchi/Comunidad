@@ -1,13 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import { ModalContext } from "./../../Context/Modal.Context";
 
 const Modal = () => {
-  const {data} = useContext(ModalContext);
+  const { data = [] } = useContext(ModalContext);
+  const [state, setState] = useState({});
+  const { data: dataV = [] } = data;
 
-// console.log(Context)
-  
-  console.log('data',data);
-  
+  useEffect(() => {
+    {
+      Object.keys(dataV).forEach(key => {
+        setState({ ...state, la: key, value: dataV[key] });
+      });
+    }
+  }, [dataV]);
+  const Item = () => {
+    console.log(state)
+    return <div className="jumbotron" />;
+  };
+  // console.log("data", dataV);
+
   return (
     <>
       <div
@@ -34,6 +45,7 @@ const Modal = () => {
               </button>
             </div>
             <div className="modal-body">
+              <Item />
             </div>
             <div className="modal-footer">
               <button

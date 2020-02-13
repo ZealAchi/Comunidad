@@ -6,7 +6,7 @@ const initialData={
 }
 export default function Modal({ children }) {
   const [state, setState] = useState(initialData);
-  function setMode(data) {
+  function setMode({data}) {
     console.log(data)
     setState({data});
   }
