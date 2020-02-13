@@ -1,16 +1,18 @@
-import React, {useState,createContext} from 'react'
+import React, { useState, createContext } from "react";
 
-export const ModalContext=createContext()
+export const ModalContext = createContext();
 const initialData={
-    data:{
-        
-    }
+  
 }
-export default function Modal({children}){
- const [state,setState]=useState(initialData)   
-    return(
-        <ModalContext.Provider value={{...state}}>
-        {children}
-        </ModalContext.Provider>
-    )
+export default function Modal({ children }) {
+  const [state, setState] = useState(initialData);
+  function setMode(data) {
+    console.log(data)
+    setState({data});
+  }
+  return (
+    <ModalContext.Provider value={{ ...state, setMode: setMode }}>
+      {children}
+    </ModalContext.Provider>
+  );
 }
