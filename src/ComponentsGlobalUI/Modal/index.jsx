@@ -6,9 +6,7 @@ const Modal = () => {
   const [state, setState] = useState({});
   const { data: dataV = [] } = data;
 
-useEffect((dataV)=>{
-  setState(dataV)
-},[dataV])
+useEffect(
   const Item = () => {
     return (
       <div className="jumbotron">
