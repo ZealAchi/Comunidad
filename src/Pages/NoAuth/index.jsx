@@ -8,10 +8,16 @@ export default function NoAuth() {
         style={{ padding: 12, flex: 1, display: "flex", flexDirection: "row" }}
       >
         <div style={{ marginRight: "8%" }}>
-          <Link to={`/Login`}>Login</Link>
+          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#ModalGlobal">
+            Inicia Sesión
+          </button>
+
+
         </div>
         <div>
-          <Link to={`/Register`}>Register</Link>
+          <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#ModalGlobal">
+            Registrate
+        </button>
         </div>
       </div>
     </>

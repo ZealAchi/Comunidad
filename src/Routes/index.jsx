@@ -12,6 +12,7 @@ import { AuthContext } from "./../Context/Auth.Context";
 import { LoadContext } from "./../Context/Load.Context";
 import { NotificationContext } from "./../Context/Notification.Context";
 import { Rutas, RenderComponent } from "./DataRoute";
+import Modal from "../ComponentsGlobalUI/Modal";
 const AuthValue = [];
 
 export default function() {
@@ -56,6 +57,7 @@ export default function() {
           )}
         </Layout>
       </Router>
+      <Modal/>
     </div>
   );
 }
