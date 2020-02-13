@@ -1,4 +1,4 @@
-import React, { useContext, useState,useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ModalContext } from "./../../Context/Modal.Context";
 
 const Modal = () => {
@@ -6,19 +6,43 @@ const Modal = () => {
   const [state, setState] = useState({});
   const { data: dataV = [] } = data;
 
-  useEffect(() => {
-    {
-      Object.keys(dataV).forEach(key => {
-        setState({ ...state, la: key, value: dataV[key] });
-      });
-    }
-  }, [dataV]);
+useEffect((dataV)=>{
+  setState(dataV)
+},[dataV])
   const Item = () => {
-    console.log(state)
-    return <div className="jumbotron" />;
+    return (
+      <div className="jumbotron">
+        {dataV.map((item, i) => {
+          console.log(item);
+          return (
+            <div key={i} className="form-group">
+              <label for={item.label}>{item.label}</label>
+              <input
+                type="email"
+                className="form-control"
+                id={item.label}
+                aria-describedby="emailHelp"
+                placeholder={item.placeholder}
+              />
+            </div>
+          );
+        })}
+      </div>
+    );
   };
-  // console.log("data", dataV);
 
+  const Form = () => {
+    return (
+      <>
+        <form>
+          <Item />
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+      </>
+    );
+  };
   return (
     <>
       <div
@@ -45,7 +69,7 @@ const Modal = () => {
               </button>
             </div>
             <div className="modal-body">
-              <Item />
+              <Form />
             </div>
             <div className="modal-footer">
               <button
