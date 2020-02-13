@@ -6,12 +6,12 @@ const Modal = () => {
   const [state, setState] = useState({});
   const { data: dataV = [] } = data;
 
-useEffect(
+
   const Item = () => {
     return (
       <div className="jumbotron">
         {dataV.map((item, i) => {
-          console.log(item);
+          
           return (
             <div key={i} className="form-group">
               <label for={item.label}>{item.label}</label>
@@ -55,7 +55,7 @@ useEffect(
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="ModalGlobalTitle">
-                Modal title
+                {data.typeModal}
               </h5>
               <button
                 type="button"

@@ -3,10 +3,10 @@ import React from "react";
 export default function Login({ setMode }) {
   const login = {
     data: {
-      typeModal: "login",
+      typeModal: "Iniciar Sesión",
       data: [
-        { value: "luis", label: "usuario",placeholder:"Ingresa tu usuario" },
-        { value: "127asd127", label: "contraseña",placeholder:"Ingresa tu contraseña" }
+        { value: "luis", label: "usuario",placeholder:"Ingresa tu usuario" ,type:'text' },
+        { value: "127asd127", label: "contraseña",placeholder:"Ingresa tu contraseña",type:'text' }
       ]
     }
   };
