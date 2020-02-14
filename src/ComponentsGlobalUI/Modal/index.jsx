@@ -5,8 +5,7 @@ const Modal = () => {
   const { data = [] } = useContext(ModalContext);
   const [state, setState] = useState({});
   const { data: dataV = [] } = data;
-
-
+ 
   const Item = () => {
     return (
       <div className="jumbotron">
@@ -14,7 +13,7 @@ const Modal = () => {
           
           return (
             <div key={i} className="form-group">
-              <label for={item.label}>{item.label}</label>
+              <label htmlFor={item.label}>{item.label}</label>
               <input
                 type="email"
                 className="form-control"
