@@ -6,6 +6,14 @@ const Modal = () => {
   const [state, setState] = useState({});
   const { data: dataV = [] } = data;
 
+const updateField = e => {
+  console.log(e.target.value)
+    // setState({
+    //   ...state,
+    //   [e.target.name]: e.target.value,
+    // });
+  };
+
   const Item = () => {
     return (
       <div className="jumbotron">
@@ -17,7 +25,7 @@ const Modal = () => {
                 key={i}
                 type="button"
                 className="btn btn-primary"
-                onClick={(e) =>{ item.submit(e)}}
+                onClick={(e) =>{console.log('asd')}}
               >
                 {item.label}
               </button>
@@ -29,6 +37,7 @@ const Modal = () => {
               <input
                 type={item.type}
                 value={item.value}
+                onChange={updateField}
                 className="form-control"
                 id={item.label}
                 aria-describedby="emailHelp"

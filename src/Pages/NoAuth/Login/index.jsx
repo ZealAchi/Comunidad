@@ -13,6 +13,10 @@ export default function Login({ setMode }) {
     }
   };
   const [state,setState]= useState(login.data.data)
+  // setState({
+  //     ...state,
+  //     [e.target.name]: e.target.value,
+  //   });
   console.log(state)
   return (
     <>
@@ -32,7 +36,7 @@ export default function Login({ setMode }) {
         <input key={i}
                 type="text"
                 // value={item.value}
-                onChange={(e)=>{console.log(e)}}
+                onChange={(e)=>{console.log(e.value.target)}}
                 className="form-control"
                 aria-describedby="emailHelp"
                 placeholder={'item.placeholder'}
