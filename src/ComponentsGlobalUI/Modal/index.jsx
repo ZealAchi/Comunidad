@@ -5,17 +5,30 @@ const Modal = () => {
   const { data = [] } = useContext(ModalContext);
   const [state, setState] = useState({});
   const { data: dataV = [] } = data;
- 
+
   const Item = () => {
     return (
       <div className="jumbotron">
         {dataV.map((item, i) => {
-          
+          console.log(item);
+          if (item.type === "button") {
+            return (
+              <button
+                key={i}
+                type="button"
+                className="btn btn-primary"
+                onClick={(e) =>{ item.submit(e)}}
+              >
+                {item.label}
+              </button>
+            );
+          }
           return (
             <div key={i} className="form-group">
               <label htmlFor={item.label}>{item.label}</label>
               <input
-                type="email"
+                type={item.type}
+                value={item.value}
                 className="form-control"
                 id={item.label}
                 aria-describedby="emailHelp"
@@ -33,9 +46,6 @@ const Modal = () => {
       <>
         <form>
           <Item />
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
         </form>
       </>
     );
@@ -75,9 +85,6 @@ const Modal = () => {
                 data-dismiss="modal"
               >
                 Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Save changes
               </button>
             </div>
           </div>
