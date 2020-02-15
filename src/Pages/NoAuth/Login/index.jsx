@@ -13,10 +13,14 @@ export default function Login({ setMode }) {
     }
   };
   const [state,setState]= useState(login.data.data)
-  // setState({
-  //     ...state,
-  //     [e.target.name]: e.target.value,
-  //   });
+  const updateField = (e,i,item) => {
+  console.log(e.target.value)
+  console.log(i,item)
+    // setState({
+    //   ...state,
+    //   [e.target.name]: e.target.value,
+    // });
+  };
   console.log(state)
   return (
     <>
@@ -36,7 +40,7 @@ export default function Login({ setMode }) {
         <input key={i}
                 type="text"
                 // value={item.value}
-                onChange={(e)=>{console.log(e.value.target)}}
+                onChange={(e)=>updateField(e,i,item)}
                 className="form-control"
                 aria-describedby="emailHelp"
                 placeholder={'item.placeholder'}

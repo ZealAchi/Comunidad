@@ -6,13 +6,7 @@ const Modal = () => {
   const [state, setState] = useState({});
   const { data: dataV = [] } = data;
 
-const updateField = e => {
-  console.log(e.target.value)
-    // setState({
-    //   ...state,
-    //   [e.target.name]: e.target.value,
-    // });
-  };
+
 
   const Item = () => {
     return (
@@ -37,7 +31,7 @@ const updateField = e => {
               <input
                 type={item.type}
                 value={item.value}
-                onChange={updateField}
+                onChange={()=>{}}
                 className="form-control"
                 id={item.label}
                 aria-describedby="emailHelp"
